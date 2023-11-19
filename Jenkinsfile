@@ -7,9 +7,20 @@ pipeline {
       }
     }
 
-    stage('') {
-      steps {
-        sh 'ls -la'
+    stage('Log') {
+      parallel {
+        stage('Log') {
+          steps {
+            sh 'ls -la'
+          }
+        }
+
+        stage('Tests') {
+          steps {
+            sh 'mvn test'
+          }
+        }
+
       }
     }
 
