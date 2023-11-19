@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  tools {
+    maven '3.9.5'
+  }
   stages {
     stage('Checkout Code') {
       steps {
@@ -7,7 +10,7 @@ pipeline {
       }
     }
 
-    stage('Log') {
+    stage('Parallel') {
       parallel {
         stage('Log') {
           steps {
@@ -21,7 +24,7 @@ pipeline {
           }
         }
 
-        stage('Maven') {
+        stage('Maven version') {
           steps {
             sh 'mvn --version'
           }
